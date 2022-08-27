@@ -56,8 +56,8 @@ final class GradePostController extends Controller
     private function getRequestRules(): array
     {
         return [
-            'phase' => 'required|int',
-            'grade' => 'required|string',
+            'phase' => 'required|int|in:1,2,3',
+            'grade' => 'required|int|in:50,30,20',
         ];
     }
 }

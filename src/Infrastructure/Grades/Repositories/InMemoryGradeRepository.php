@@ -12,6 +12,11 @@ use TitlingQualifications\Domain\Grades\Contracts\GradeRepository;
 final class InMemoryGradeRepository implements GradeRepository
 {
     /**
+     * @var string
+     */
+    private string $gradesFilePath = __DIR__ . '/Grades.txt';
+
+    /**
      * @var array
      */
     private static array $grades;
@@ -32,7 +37,13 @@ final class InMemoryGradeRepository implements GradeRepository
      */
     public function create(string $studentIdentificationCard, int $phase, string $grade): void
     {
-        // TODO: Implement create() method.
+        $Grade = [$studentIdentificationCard, $phase, $grade];
+
+        $fp = fopen($this->gradesFilePath, 'a'); //opens file in append mode
+
+        fwrite($fp, implode(',', $Grade) . PHP_EOL);
+
+        fclose($fp);
     }
 
     /**
@@ -42,11 +53,11 @@ final class InMemoryGradeRepository implements GradeRepository
      */
     public function find(string $studentIdentificationCard, int $phase): ?array
     {
-        return collect(self::$grades)
-            ->first(function($Grade) use ($studentIdentificationCard, $phase) {
+        return collect(self::$grades)->first(
+            function($Grade) use ($studentIdentificationCard, $phase) {
 
-                return data_get($Grade, 'code') === $studentIdentificationCard
-                    && data_get($Grade, 'phase') === $phase;
+                return data_get($Grade, 'code') == $studentIdentificationCard
+                    && data_get($Grade, 'phase') == $phase;
             });
     }
 
@@ -55,18 +66,16 @@ final class InMemoryGradeRepository implements GradeRepository
      */
     private function getAllGradesFromTextFile() : array
     {
-        //Get comma separated lines as an array element
         $gradesTextData = array_map(
             'str_getcsv',
-            file(__DIR__ . "/Grades.txt")
+            file($this->gradesFilePath)
         );
 
-        //Combine header as keys with rows as elements
         array_walk($gradesTextData, function(&$row) use ($gradesTextData) {
             $row = array_combine($gradesTextData[0], $row);
         });
 
-        unset($gradesTextData[0]); //remove header
+        unset($gradesTextData[0]);
 
         return $gradesTextData;
     }

@@ -17,3 +17,8 @@ $router->get('/students/{identificationCard}', [
     'as'    => 'students.get',
     'uses'  => 'StudentGetController'
 ]);
+
+$router->post('/students/{studentIdentificationCard}/grades', [
+    'as'    => 'students.registerGrades',
+    'uses'  => 'GradePostController'
+]);
