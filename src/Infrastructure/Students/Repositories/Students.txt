@@ -1,0 +1,6 @@
+code,first_name,surname,topic
+09653665551,Kevin,Aguirre,"Artificial Inteligence in real world"
+09653665552,Philip,McLauren,"Clean Architectures"
+09653665553,Carl,Smith,"SOLID principles"
+09653665554,Joseph,Stephen,"Event Driven Architecture"
+09653665555,Trevor,Walker,"Command Query Responsibility Principle"

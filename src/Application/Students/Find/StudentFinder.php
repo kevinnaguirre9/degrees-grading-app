@@ -28,15 +28,15 @@ final class StudentFinder
 
         $this->ensureStudentExists($Student);
 
-        return [];
+        return $Student;
     }
 
     /**
-     * @param array $Student
+     * @param array|null $Student
      * @return void
      * @throws StudentNotFound
      */
-    private function ensureStudentExists(array $Student)
+    private function ensureStudentExists(?array $Student) : void
     {
         if(empty($Student))
             throw new StudentNotFound("Student with given identification card not found");

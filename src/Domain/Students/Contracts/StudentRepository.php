@@ -15,7 +15,7 @@ interface StudentRepository
 
     /**
      * @param string $identificationCard
-     * @return array
+     * @return array|null
      */
-    public function find(string $identificationCard): array;
+    public function find(string $identificationCard): ?array;
 }
