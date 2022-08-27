@@ -12,14 +12,14 @@ final class InMemoryStudentRepository implements StudentRepository
     /**
      * @var array
      */
-    private static array $Students;
+    private static array $students;
 
     /**
      *
      */
     public function __construct()
     {
-        self::$Students = $this->getAllStudentsFromTextFile();
+        self::$students = $this->getAllStudentsFromTextFile();
     }
 
     /**
@@ -28,16 +28,18 @@ final class InMemoryStudentRepository implements StudentRepository
      */
     public function save(array $Student): void
     {
-
+        //
     }
 
     /**
+     * Find student with given identification card
+     *
      * @param string $identificationCard
      * @return array|null
      */
     public function find(string $identificationCard): ?array
     {
-        return collect(self::$Students)
+        return collect(self::$students)
             ->first(fn($Student) => data_get($Student, 'code') === $identificationCard);
     }
 

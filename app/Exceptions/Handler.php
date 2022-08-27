@@ -11,6 +11,7 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
+use TitlingQualifications\Domain\Grades\Exceptions\GradeAlreadyRegistered;
 use TitlingQualifications\Domain\Students\Exceptions\StudentNotFound;
 
 class Handler extends ExceptionHandler
@@ -43,7 +44,7 @@ class Handler extends ExceptionHandler
      * @var array
      */
     protected $badRequestExceptions = [
-
+        GradeAlreadyRegistered::class,
     ];
 
     /**

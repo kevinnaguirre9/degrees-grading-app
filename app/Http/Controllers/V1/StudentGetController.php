@@ -9,11 +9,11 @@ use TitlingQualifications\Application\Students\Find\StudentFinder;
 use TitlingQualifications\Domain\Students\Exceptions\StudentNotFound;
 
 /**
- * Class StudentsGetController
+ * Class StudentGetController
  *
  * @package App\Http\Controllers\V1
  */
-final class StudentsGetController extends Controller
+final class StudentGetController extends Controller
 {
     public function __construct(private StudentFinder $finder)
     {

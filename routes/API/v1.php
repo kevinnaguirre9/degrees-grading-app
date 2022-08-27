@@ -15,5 +15,5 @@
 
 $router->get('/students/{identificationCard}', [
     'as'    => 'students.get',
-    'uses'  => 'StudentsGetController'
+    'uses'  => 'StudentGetController'
 ]);
