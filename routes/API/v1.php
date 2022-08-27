@@ -13,7 +13,7 @@
 |
 */
 
-$router->get('/students/{id}', [
+$router->get('/students/{identificationCard}', [
     'as'    => 'students.get',
     'uses'  => 'StudentsGetController'
 ]);
